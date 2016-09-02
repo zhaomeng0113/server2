@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>demo</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <!-- Data Tables -->
+    <link href="css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="css/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="css/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">
+
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/advertorial.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker.css" />
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/daterangepicker.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/china.js"></script>
+    <script>
+        /*$(function(){
+         $('#dateTimePicker').daterangepicker({
+         timepicker:true,
+         timePickerIncrement:30,
+         format:'MM/DD/YYYY'
+         });
+         $('#dateTimePicker').data('daterangepicker').setStartDate('2010-01-01');
+         });*/
+    </script>
+</head>
+
+<body>
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element">
+                        <span><img alt="image" class="img-circle" src="img/tx.png"/></span>
+                        <span class="cf">欢迎访问</span>
+                    </div>
+                    <div class="logo-element">
+                        ME
+                    </div>
+                </li>
+                <li>
+                    <a href="demo.html"><i class="fa fa-th-large"></i> <span class="nav-label">首页</span></a>
+                </li>
+                <li class="active">
+                    <a href=""><i class="fa fa-th-large"></i> <span class="nav-label">基础数据</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li class="active"><a href="bankcollect.html">第一汇总</a></li>
+                        <!--<li><a href="我要投稿.html">我要投稿</a></li>-->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top row header-navbar" role="navigation" style="margin-bottom: 0;">
+                <div class="navbar-header col-xs-3">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i></a>
+                </div>
+                <div class="col-xs-6 header-title">XX集团总部</div>
+                <div class="col-xs-3">
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <i class="fa fa-sign-out"></i> <span class="tcdl-btn">你好，XX</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-sign-out"></i> <span class="tcdl-btn">退出登录</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div style="height: 400px;background: white">
+                <input type="checkbox" name="banks" onclick="checkAll()" value="所有银行"> 所有银行
+                <input type="checkbox" name="banks" onclick="checkOne()" value="兴业"> 兴业
+                <input type="checkbox" name="banks" onclick="checkOne()" value="华夏"> 华夏
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="招商"> 招商
+                <input type="checkbox" name="banks" onclick="checkOne()" value="浙商"> 浙商
+                <div id="container" style="height: 100%">
+                    <script>
+                        $(function(){
+                            $(":input[type='checkbox']").eq(0).attr("checked",true);
+                           checkAll();
+                        })
+                        function checkAll(){
+                            var allFlag=$(":input[type='checkbox']").eq(0).prop("checked");
+                            if(allFlag){
+                                $(":input[type='checkbox']").prop("checked","checked");
+                                var banks=[];
+                                $("input:checkbox[name='banks']").each(function(){
+                                    var checked=$(this).prop("checked");
+                                    if(checked == "checked"||checked){
+                                        if($(this).val()!="所有银行"){
+                                            banks.push($(this).val());
+                                        }
+                                    }
+                                });
+                                change(banks);
+                            }else{
+                                $(":input[type='checkbox']").attr("checked",false);
+                            }
+                        }
+                        function checkOne(){
+                            $(":input[type='checkbox']").eq(0).attr("checked",false)
+                            var banks=[];
+                            $("input:checkbox[name='banks']").each(function(){
+                                var checked=$(this).prop("checked");
+                                if(checked == "checked"||checked){
+                                    if($(this).val()!="所有银行"){
+                                        banks.push($(this).val());
+                                    }
+                                }
+                            });
+                            change(banks);
+                        }
+                        function randomData() {
+                            return Math.round(Math.random()*1000);
+                        }
+                        function randomnum() {
+                            return Math.random()*100;
+                        }
+                        function change(banks){
+                            var dataForshop=[];
+                            var dataFornum=[];
+                            for(var i=0;i<banks.length;i++){
+                                dataForshop.push(randomData());
+                                dataFornum.push(randomnum());
+                            }
+                            var app = echarts.init(document.getElementById('container'));
+                            app.title = '折柱混合';
+                            option = {
+                                tooltip: {
+                                    trigger: 'axis'
+                                },
+                                /* toolbox: {
+                                 feature: {
+                                 dataView: {show: true, readOnly: false},
+                                 magicType: {show: true, type: ['line', 'bar']},
+                                 restore: {show: true},
+                                 saveAsImage: {show: true}
+                                 }
+                                 },*/
+                                legend: {
+                                    data:['店数','平均分']
+                                },
+                                xAxis: [
+                                    {
+                                        type: 'category',
+                                        data: banks
+                                    }
+                                ],
+                                yAxis: [
+                                    {
+                                        type: 'value',
+                                        name: '店数',
+                                        min: 0,
+                                        max: 1000,
+                                        interval: 100,
+                                        axisLabel: {
+                                            formatter: '{value} 个'
+                                        }
+                                    },
+                                    {
+                                        type: 'value',
+                                        name: '平均分',
+                                        min: 0,
+                                        max: 100,
+                                        interval: 10,
+                                        axisLabel: {
+                                            formatter: '{value}'
+                                        }
+                                    }
+                                ],
+                                series: [
+                                    {
+                                        name:'店数',
+                                        type:'bar',
+                                        data:dataForshop
+                                    },
+                                    {
+                                        name:'平均分',
+                                        type:'line',
+                                        yAxisIndex: 1,
+                                        data:dataFornum
+                                    }
+                                ]
+                            };
+                            app.setOption(option);
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mainly scripts -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+        <script src="js/plugins/jeditable/jquery.jeditable.js"></script>
+
+        <!-- Data Tables -->
+        <script src="js/plugins/dataTables/jquery.dataTables.js"></script>
+        <script src="js/plugins/dataTables/dataTables.bootstrap.js"></script>
+        <script src="js/plugins/dataTables/dataTables.responsive.js"></script>
+        <script src="js/plugins/dataTables/dataTables.tableTools.min.js"></script>
+
+        <!-- Morris -->
+        <script src="js/plugins/morris/raphael-2.1.0.min.js"></script>
+        <script src="js/plugins/morris/morris.js"></script>
+
+        <!-- Custom and plugin javascript -->
+        <script src="js/inspinia.js"></script>
+        <script src="js/plugins/pace/pace.min.js"></script>
+        <!-- iCheck -->
+        <script src="js/plugins/iCheck/icheck.min.js"></script>
+        <!-- Morris demo data-->
+        <script src="js/morris-demo.js"></script>
+</body>
+</html>
