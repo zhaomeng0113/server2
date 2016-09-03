@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>demo</title>
+    <title>风险店动态清单</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
@@ -103,6 +103,9 @@
                         function randomData() {
                             return Math.round(Math.random()*1000);
                         }
+                        myChart.on('dblclick',function(params){
+                            alert(params.name);
+                        });
                         option = {
                             title: {
                                 text: '地域风险分布',
